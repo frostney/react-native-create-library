@@ -1,0 +1,29 @@
+{
+  "name": "react-native-create-library",
+  "version": "1.0.0",
+  "description": "Tool to create a React Native library with a single command",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frostney/react-native-create-library.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/frostney/react-native-create-library/issues"
+  },
+  "homepage": "https://github.com/frostney/react-native-create-library#readme",
+  "dependencies": {
+    "minimist": "^1.2.0",
+    "mkdirp": "^0.5.1"
+  },
+  "devDependencies": {
+    "eslint": "^3.1.0",
+    "eslint-config-airbnb-base": "^4.0.2",
+    "eslint-plugin-import": "^1.10.3"
+  }
+}
