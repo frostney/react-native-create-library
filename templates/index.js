@@ -2,20 +2,9 @@ const android = require('./android')('android');
 const ios = require('./ios')('ios');
 const windows = require('./windows')('windows');
 
-const general = [{
-  name: () => 'README.md',
-  content: () => `
-    Hello there my old friend
-  `,
-}];
+const general = require('./general');
 
-const updatePlatformInFile = platform => file => {
-  const f = file;
-
-  f.platform = platform;
-
-  return f;
-};
+const updatePlatformInFile = platform => file => Object.assign(file, { platform });
 
 module.exports = [].concat(
   general,

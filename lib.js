@@ -2,17 +2,43 @@ const fs = require('fs');
 const path = require('path');
 const mkdirp = require('mkdirp');
 
+const pascalCase = require('pascal-case');
+const paramCase = require('param-case');
+
 const templates = require('./templates');
 
+const DEFAULT_NAME = 'Library';
+const DEFAULT_PREFIX = 'RN';
+const DEFAULT_MODULE_PREFIX = 'react-native';
+const DEFAULT_PACKAGE_IDENTIFIER = 'com.reactlibrary';
 const DEFAULT_PLATFORMS = ['android', 'ios', 'windows'];
 
-const hasPrefix = name =>
-  name[0].toUpperCase() === name[0] && name[1].toUpperCase() === name[1];
+const isUpperCase = (str, index) => str[index].toUpperCase() === str[index];
+
+const hasPrefix = name => isUpperCase(name, 0) && isUpperCase(name, 1);
+
+const createFolder = folder =>
+  new Promise((resolve, reject) => {
+    if (!folder) {
+      resolve();
+      return;
+    }
+
+    mkdirp(folder, err => {
+      if (err) {
+        return reject(err);
+      }
+
+      return resolve();
+    });
+  });
 
 module.exports = ({
-  name = 'Library',
-  prefix = 'RN',
-  packageIdentifier = 'com.reactlibrary',
+  namespace,
+  name = DEFAULT_NAME,
+  prefix = DEFAULT_PREFIX,
+  modulePrefix = DEFAULT_MODULE_PREFIX,
+  packageIdentifier = DEFAULT_PACKAGE_IDENTIFIER,
   platforms = DEFAULT_PLATFORMS,
 }) => {
   if (hasPrefix(name)) {
@@ -20,41 +46,51 @@ module.exports = ({
   }
 
   if (prefix === 'RTC') {
-    throw new Error(`The "RTC" name prefix is reserved for core React modules.
+    throw new Error(`The \`RTC\` name prefix is reserved for core React modules.
       Please use a different prefix.`);
   }
 
   if (prefix === 'RN') {
-    console.warn('While `RN` is the default prefix, it is recommended to customize the prefix.');
+    console.warn(`While \`RN\` is the default prefix,
+      it is recommended to customize the prefix.`);
   }
 
-  templates.filter(template => {
+  return Promise.all(templates.filter(template => {
     if (template.platform) {
       return (platforms.indexOf(template.platform) >= 0);
     }
 
     return true;
-  }).forEach(template => {
+  }).map(template => {
     if (!template.name) {
-      return;
+      return Promise.resolve();
     }
 
     const args = {
-      name: `${prefix}${name[0].toUpperCase() + name.slice(1)}`,
-      moduleName: `react-native-${name.toLowerCase()}`,
+      name: `${prefix}${pascalCase(name)}`,
+      moduleName: `${modulePrefix}-${paramCase(name)}`,
       packageIdentifier,
+      namespace: namespace || pascalCase(packageIdentifier).split(/(?=[A-Z])/).join('.'),
+      platforms,
     };
 
     const filename = template.name(args);
     const baseDir = filename.split(path.basename(filename))[0];
 
-    if (baseDir) {
-      mkdirp.sync(baseDir);
-    }
+    return createFolder(baseDir).then(() =>
+      new Promise((resolve, reject) => {
+        fs.writeFile(
+          filename,
+          template.content(args),
+          err => {
+            if (err) {
+              return reject(err);
+            }
 
-    fs.writeFileSync(
-      filename,
-      template.content(args)
+            return resolve();
+          }
+        );
+      })
     );
-  });
+  }));
 };
