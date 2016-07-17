@@ -195,8 +195,8 @@ packages/
     <ProjectGuid>{4ACDD44C-E556-423E-BD74-B4CEF3E67FF0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RNShare</RootNamespace>
-    <AssemblyName>RNShare</AssemblyName>
+    <RootNamespace>${name}</RootNamespace>
+    <AssemblyName>${name}</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
@@ -300,9 +300,9 @@ packages/
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RNShareModule.cs" />
-    <Compile Include="RNSharePackage.cs" />
-    <EmbeddedResource Include="Properties\RNShare.rd.xml" />
+    <Compile Include="${name}Module.cs" />
+    <Compile Include="${name}Package.cs" />
+    <EmbeddedResource Include="Properties\${name}.rd.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\node_modules\react-native-windows\ReactWindows\ReactNative\ReactNative.csproj">
@@ -370,4 +370,163 @@ packages/
   -->
 </Project>
 `,
+}, {
+  name: ({ name }) => `${platform}/${name}/${name}Module.cs`,
+  content: ({ name, namespace }) => `
+using ReactNative.Bridge;
+using System;
+using System.Collections.Generic;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
+
+namespace ${namespace}.${name}
+{
+    /// <summary>
+    /// A module that allows JS to share data.
+    /// </summary>
+    class ${name}Module : NativeModuleBase
+    {
+        /// <summary>
+        /// Instantiates the <see cref="${name}Module"/>.
+        /// </summary>
+        internal ${name}Module()
+        {
+
+        }
+
+        /// <summary>
+        /// The name of the native module.
+        /// </summary>
+        public override string Name
+        {
+            get
+            {
+                return "${name}";
+            }
+        }
+    }
+}
+`,
+}, {
+  name: ({ name }) => `${platform}/${name}/${name}Package.cs`,
+  content: ({ name, namespace }) => `
+using ReactNative.Bridge;
+using ReactNative.Modules.Core;
+using ReactNative.UIManager;
+using System;
+using System.Collections.Generic;
+
+namespace ${namespace}.${name}
+{
+    /// <summary>
+    /// Package defining core framework modules (e.g., <see cref="UIManagerModule"/>).
+    /// It should be used for modules that require special integration with
+    /// other framework parts (e.g., with the list of packages to load view
+    /// managers from).
+    /// </summary>
+    public class ${name}Package : IReactPackage
+    {
+        /// <summary>
+        /// Creates the list of native modules to register with the react
+        /// instance.
+        /// </summary>
+        /// <param name="reactContext">The react application context.</param>
+        /// <returns>The list of native modules.</returns>
+        public IReadOnlyList<INativeModule> CreateNativeModules(ReactContext reactContext)
+        {
+            return new List<INativeModule>
+            {
+                new ${name}Module(),
+            };
+        }
+
+        /// <summary>
+        /// Creates the list of JavaScript modules to register with the
+        /// react instance.
+        /// </summary>
+        /// <returns>The list of JavaScript modules.</returns>
+        public IReadOnlyList<Type> CreateJavaScriptModulesConfig()
+        {
+            return new List<Type>(0);
+        }
+
+        /// <summary>
+        /// Creates the list of view managers that should be registered with
+        /// the <see cref="UIManagerModule"/>.
+        /// </summary>
+        /// <param name="reactContext">The react application context.</param>
+        /// <returns>The list of view managers.</returns>
+        public IReadOnlyList<IViewManager> CreateViewManagers(
+            ReactContext reactContext)
+        {
+            return new List<IViewManager>(0);
+        }
+    }
+}
+`,
+}, {
+  name: ({ name }) => `${platform}/${name}/${name}/Properties/${name}.rd.xml`,
+  content: ({ name }) => `
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    This file contains Runtime Directives, specifications about types your application accesses
+    through reflection and other dynamic code patterns. Runtime Directives are used to control the
+    .NET Native optimizer and ensure that it does not remove code accessed by your library. If your
+    library does not do any reflection, then you generally do not need to edit this file. However,
+    if your library reflects over types, especially types passed to it or derived from its types,
+    then you should write Runtime Directives.
+    The most common use of reflection in libraries is to discover information about types passed
+    to the library. Runtime Directives have three ways to express requirements on types passed to
+    your library.
+    1.  Parameter, GenericParameter, TypeParameter, TypeEnumerableParameter
+        Use these directives to reflect over types passed as a parameter.
+    2.  SubTypes
+        Use a SubTypes directive to reflect over types derived from another type.
+    3.  AttributeImplies
+        Use an AttributeImplies directive to indicate that your library needs to reflect over
+        types or methods decorated with an attribute.
+    For more information on writing Runtime Directives for libraries, please visit
+    http://go.microsoft.com/fwlink/?LinkID=391919
+-->
+<Directives xmlns="http://schemas.microsoft.com/netfx/2013/01/metadata">
+  <Library Name="${name}">
+
+  	<!-- add directives for your library here -->
+
+  </Library>
+</Directives>
+`,
+}, {
+  name: ({ name }) => `${platform}/${name}/${name}/Properties/AssemblyInfo.cs`,
+  content: ({ name }) => `
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+
+// General Information about an assembly is controlled through the following
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+[assembly: AssemblyTitle("${name}")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("${name}")]
+[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Build and Revision Numbers
+// by using the '*' as shown below:
+// [assembly: AssemblyVersion("1.0.*")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: ComVisible(false)]
+  `,
 }];

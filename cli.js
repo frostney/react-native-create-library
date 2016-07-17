@@ -9,11 +9,14 @@ program.version(pkg.version)
   .option('-p, --prefix <prefix>',
     'The prefix for the library (Default: RN)')
   .option('--module-prefix <modulePrefix>',
-    'Module name for UMD build')
+    'The module prefix for the library (Default: react-native)')
   .option('--package-identifier <packageIdentifier>',
-    'Build formats (comma separated; default: es6,umd,cjs)')
+    'The package name for the Android module (Default: com.reactlibrary)')
   .option('--namespace <namespace>',
-    'Postfix names (comma separated; default: es2015:.es6,umd:.umd,cjs:,iife:.iife)')
+    'The namespace for the Windows module' +
+    ' (Default: The package identifier as PascalCase, which is `Com.Reactlibrary`)')
+  .option('--platforms <platforms>',
+    'Platforms the library will be created for. (comma separated; default: ios,android,windows')
   .parse(process.argv);
 
 const name = program.args[0];
@@ -21,6 +24,7 @@ const prefix = program.prefix;
 const modulePrefix = program.modulePrefix;
 const packageIdentifier = program.packageIdentifier;
 const namespace = program.namespace;
+const platforms = (program.platforms || '').split(',');
 
 const beforeCreation = Date.now();
 createLibrary({
@@ -28,9 +32,11 @@ createLibrary({
   prefix,
   modulePrefix,
   packageIdentifier,
+  platforms,
   namespace,
 }).then(() => {
-  console.log(`Created library ${name}. It took ${Date.now() - beforeCreation}ms.`);
+  console.log(`
+Created library ${name}. It took ${Date.now() - beforeCreation}ms.`);
 }).catch(err => {
   console.error(`Error while creating library ${name}`);
 

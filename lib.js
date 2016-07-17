@@ -1,37 +1,17 @@
-const fs = require('fs');
 const path = require('path');
-const mkdirp = require('mkdirp');
 
 const pascalCase = require('pascal-case');
 const paramCase = require('param-case');
+const pathExists = require('path-exists');
 
 const templates = require('./templates');
+const { hasPrefix, createFile, createFolder } = require('./utils');
 
 const DEFAULT_NAME = 'Library';
 const DEFAULT_PREFIX = 'RN';
 const DEFAULT_MODULE_PREFIX = 'react-native';
 const DEFAULT_PACKAGE_IDENTIFIER = 'com.reactlibrary';
 const DEFAULT_PLATFORMS = ['android', 'ios', 'windows'];
-
-const isUpperCase = (str, index) => str[index].toUpperCase() === str[index];
-
-const hasPrefix = name => isUpperCase(name, 0) && isUpperCase(name, 1);
-
-const createFolder = folder =>
-  new Promise((resolve, reject) => {
-    if (!folder) {
-      resolve();
-      return;
-    }
-
-    mkdirp(folder, err => {
-      if (err) {
-        return reject(err);
-      }
-
-      return resolve();
-    });
-  });
 
 module.exports = ({
   namespace,
@@ -47,12 +27,21 @@ module.exports = ({
 
   if (prefix === 'RTC') {
     throw new Error(`The \`RTC\` name prefix is reserved for core React modules.
-      Please use a different prefix.`);
+  Please use a different prefix.`);
+  }
+
+  if (pathExists.sync(path.join(process.cwd(), 'package.json'))) {
+    throw new Error(`A \`package.json\` already exists in this path
+  Please run the application in a different path.`);
+  }
+
+  if (platforms.length === 0) {
+    throw new Error('Please specify at least one platform to generate the library.');
   }
 
   if (prefix === 'RN') {
     console.warn(`While \`RN\` is the default prefix,
-      it is recommended to customize the prefix.`);
+  it is recommended to customize the prefix.`);
   }
 
   return Promise.all(templates.filter(template => {
@@ -78,19 +67,7 @@ module.exports = ({
     const baseDir = filename.split(path.basename(filename))[0];
 
     return createFolder(baseDir).then(() =>
-      new Promise((resolve, reject) => {
-        fs.writeFile(
-          filename,
-          template.content(args),
-          err => {
-            if (err) {
-              return reject(err);
-            }
-
-            return resolve();
-          }
-        );
-      })
+      createFile(filename, template.content(args))
     );
   }));
 };

@@ -63,7 +63,12 @@ module.exports = [{
 ${manualInstallation}
 
 ## Usage
+\`\`\`javascript
+import ${name} from '${moduleName}';
 
+// TODO: What do with the module?
+${name};
+\`\`\`
   `;
   },
 }, {
@@ -86,5 +91,14 @@ ${manualInstallation}
     "react-native": "^0.29.0"
   }
 }
+`,
+}, {
+  name: () => 'index.js',
+  content: ({ name }) => `
+import { NativeModules } from 'react-native';
+
+const { ${name} } = NativeModules;
+
+export default ${name};
 `,
 }];
