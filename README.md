@@ -4,7 +4,7 @@ Tool to create a React Native library with a single command.
 ![](https://github.com/frostney/react-native-create-library/blob/master/docs/usage.gif)
 
 ### Why might you need this?
-If you are looking to create a native module for React Native, you need some native code for each platform the module wants to support and then some JavaScript code to bind it all together. Setting this up by yourself can be time-consuming.
+If you are looking to create a native module for React Native, you need some native code for each platform you want to support and then some JavaScript code to bind it all together. Setting this up by yourself can be time-consuming.
 
 This is where this tool comes in. It creates a boilerplate with all current best practices in mind.
 Why not use `react-native new-library`? Unfortunately that command doesn't create an up-to-date library, requires an already initialized React Native project and only sets up the iOS side of things.
