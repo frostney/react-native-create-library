@@ -48,7 +48,7 @@ public class ${name}Module extends ReactContextBaseJavaModule {
 
   private final ReactApplicationContext reactContext;
 
-  public RNShareModule(ReactApplicationContext reactContext) {
+  public ${name}Module(ReactApplicationContext reactContext) {
     super(reactContext);
     this.reactContext = reactContext;
   }
