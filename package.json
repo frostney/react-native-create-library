@@ -17,7 +17,10 @@
     "library",
     "create",
     "module",
-    "native"
+    "native",
+    "ios",
+    "android",
+    "windows"
   ],
   "author": "Johannes Stein",
   "license": "MIT",
