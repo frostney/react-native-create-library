@@ -26,8 +26,7 @@ RCT_EXPORT_MODULE()
   `,
 }, {
   name: ({ name }) => `${platform}/${name}.xcodeproj/project.pbxproj`,
-  content: ({ name }) => `
-// !$*UTF8*$!
+  content: ({ name }) => `// !$*UTF8*$!
 {
 	archiveVersion = 1;
 	classes = {
