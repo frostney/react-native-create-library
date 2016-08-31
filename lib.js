@@ -25,8 +25,8 @@ module.exports = ({
     throw new Error('Please don\'t include the prefix in the name');
   }
 
-  if (prefix === 'RTC') {
-    throw new Error(`The \`RTC\` name prefix is reserved for core React modules.
+  if (prefix === 'RCT') {
+    throw new Error(`The \`RCT\` name prefix is reserved for core React modules.
   Please use a different prefix.`);
   }
 
