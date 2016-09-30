@@ -1,6 +1,33 @@
 /* eslint max-len: 0 */
 
 module.exports = platform => [{
+	name:({name}) =>`${platform}/${name}.podspec`,
+	content: ({ name }) => `
+Pod::Spec.new do |s|
+  s.name         = "${name}"
+  s.version      = "1.0.0"
+  s.summary      = "${name}"
+  s.description  = <<-DESC
+                  ${name}
+                   DESC
+  s.homepage     = ""
+  s.license      = "MIT"
+  # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
+  s.author             = { "author" => "author@domain.cn" }
+  s.platform     = :ios, "7.0"
+  s.source       = { :git => "https://github.com/author/${name}.git", :tag => "master" }
+  s.source_files  = "${name}/**/*.{h,m}"
+  s.requires_arc = true
+
+
+  s.dependency "React"
+  #s.dependency "others"
+
+end
+
+  `,
+},{
+
   name: ({ name }) => `${platform}/${name}.h`,
   content: ({ name }) => `
 #import "RCTBridgeModule.h"
