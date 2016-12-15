@@ -21,6 +21,13 @@ android {
     }
 }
 
+allprojects {
+    repositories {
+        jcenter()
+        maven { url "$projectDir/../../react-native/android" }
+    }
+}
+
 dependencies {
     compile 'com.facebook.react:react-native:0.20.+'
 }
