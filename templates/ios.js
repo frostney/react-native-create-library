@@ -30,7 +30,7 @@ end
 
   name: ({ name }) => `${platform}/${name}.h`,
   content: ({ name }) => `
-#import "RCTBridgeModule.h"
+#import <React/RCTBridgeModule.h>
 
 @interface ${name} : NSObject <RCTBridgeModule>
 
