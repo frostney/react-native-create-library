@@ -1,6 +1,6 @@
 {
   "name": "react-native-create-library",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "Tool to create a React Native library with a single command",
   "bin": "cli.js",
   "main": "lib.js",
