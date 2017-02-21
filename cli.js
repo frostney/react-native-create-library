@@ -8,6 +8,8 @@ program.version(pkg.version)
   .usage('[options] <name>')
   .option('-p, --prefix <prefix>',
     'The prefix for the library (Default: `RN`)')
+  .option('--override-prefix',
+    'Overrides the prefix check and allows the name to begin with uppercase characters')
   .option('--module-prefix <modulePrefix>',
     'The module prefix for the library (Default: `react-native`)')
   .option('--package-identifier <packageIdentifier>',
@@ -25,6 +27,7 @@ const modulePrefix = program.modulePrefix;
 const packageIdentifier = program.packageIdentifier;
 const namespace = program.namespace;
 const platforms = (program.platforms) ? program.platforms.split(',') : program.platforms;
+const overridePrefix = program.overridePrefix;
 
 const beforeCreation = Date.now();
 createLibrary({
@@ -34,6 +37,7 @@ createLibrary({
   packageIdentifier,
   platforms,
   namespace,
+  overridePrefix,
 }).then(() => {
   console.log(`
 Created library ${name}. It took ${Date.now() - beforeCreation}ms.`);
