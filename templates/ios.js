@@ -1,8 +1,8 @@
 /* eslint max-len: 0 */
 
 module.exports = platform => [{
-	name:({name}) =>`${platform}/${name}.podspec`,
-	content: ({ name }) => `
+  name: ({ name }) => `${platform}/${name}.podspec`,
+  content: ({ name }) => `
 Pod::Spec.new do |s|
   s.name         = "${name}"
   s.version      = "1.0.0"
@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
 end
 
   `,
-},{
+}, {
 
   name: ({ name }) => `${platform}/${name}.h`,
   content: ({ name }) => `
