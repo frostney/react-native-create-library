@@ -30,7 +30,11 @@ end
 
   name: ({ name }) => `${platform}/${name}.h`,
   content: ({ name }) => `
+#if __has_include("RCTBridgeModule.h")
+#import "RCTBridgeModule.h"
+#else
 #import <React/RCTBridgeModule.h>
+#endif
 
 @interface ${name} : NSObject <RCTBridgeModule>
 
