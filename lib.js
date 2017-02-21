@@ -12,6 +12,7 @@ const DEFAULT_PREFIX = 'RN';
 const DEFAULT_MODULE_PREFIX = 'react-native';
 const DEFAULT_PACKAGE_IDENTIFIER = 'com.reactlibrary';
 const DEFAULT_PLATFORMS = ['android', 'ios', 'windows'];
+const DEFAULT_OVERRIDE_PREFIX = false;
 
 module.exports = ({
   namespace,
@@ -20,14 +21,17 @@ module.exports = ({
   modulePrefix = DEFAULT_MODULE_PREFIX,
   packageIdentifier = DEFAULT_PACKAGE_IDENTIFIER,
   platforms = DEFAULT_PLATFORMS,
+  overridePrefix = DEFAULT_OVERRIDE_PREFIX,
 }) => {
-  if (hasPrefix(name)) {
-    throw new Error('Please don\'t include the prefix in the name');
-  }
+  if (!overridePrefix) {
+    if (hasPrefix(name)) {
+      throw new Error('Please don\'t include the prefix in the name');
+    }
 
-  if (prefix === 'RCT') {
-    throw new Error(`The \`RCT\` name prefix is reserved for core React modules.
-  Please use a different prefix.`);
+    if (prefix === 'RCT') {
+      throw new Error(`The \`RCT\` name prefix is reserved for core React modules.
+    Please use a different prefix.`);
+    }
   }
 
   if (pathExists.sync(path.join(process.cwd(), 'package.json'))) {
