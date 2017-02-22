@@ -6,7 +6,7 @@
   "main": "lib.js",
   "scripts": {
     "lint": "eslint .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run lint"
   },
   "repository": {
     "type": "git",
@@ -35,11 +35,11 @@
     "param-case": "^2.1.0",
     "pascal-case": "^2.0.0",
     "path-exists": "^3.0.0",
-    "uuid": "^2.0.3"
+    "uuid": "^3.0.1"
   },
   "devDependencies": {
-    "eslint": "^3.1.0",
-    "eslint-config-airbnb-base": "^4.0.2",
-    "eslint-plugin-import": "^1.10.3"
+    "eslint": "^3.16.0",
+    "eslint-config-airbnb-base": "^11.1.0",
+    "eslint-plugin-import": "^2.2.0"
   }
 }

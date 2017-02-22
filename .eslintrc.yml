@@ -1,1 +1,7 @@
 extends: airbnb-base
+rules:
+  no-tabs: 0
+  comma-dangle:
+    - error
+    - objects: only-multiline
+      functions: never

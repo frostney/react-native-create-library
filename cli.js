@@ -41,7 +41,7 @@ createLibrary({
 }).then(() => {
   console.log(`
 Created library ${name}. It took ${Date.now() - beforeCreation}ms.`);
-}).catch(err => {
+}).catch((err) => {
   console.error(`Error while creating library ${name}`);
 
   if (err.stack) {

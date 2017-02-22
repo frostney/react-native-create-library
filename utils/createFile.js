@@ -5,7 +5,7 @@ module.exports = (filename, content) =>
     fs.writeFile(
       filename,
       content,
-      err => {
+      (err) => {
         if (err) {
           return reject(err);
         }

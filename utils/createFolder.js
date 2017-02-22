@@ -7,7 +7,7 @@ module.exports = folder =>
       return;
     }
 
-    mkdirp(folder, err => {
+    mkdirp(folder, (err) => {
       if (err) {
         return reject(err);
       }

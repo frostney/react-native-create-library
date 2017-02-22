@@ -48,13 +48,13 @@ module.exports = ({
   it is recommended to customize the prefix.`);
   }
 
-  return Promise.all(templates.filter(template => {
+  return Promise.all(templates.filter((template) => {
     if (template.platform) {
       return (platforms.indexOf(template.platform) >= 0);
     }
 
     return true;
-  }).map(template => {
+  }).map((template) => {
     if (!template.name) {
       return Promise.resolve();
     }
