@@ -1,8 +1,12 @@
 #!/usr/bin/env node
 
 const program = require('commander');
+const updateNotifier = require('update-notifier');
+
 const createLibrary = require('./lib');
 const pkg = require('./package.json');
+
+updateNotifier({ pkg }).notify();
 
 program.version(pkg.version)
   .usage('[options] <name>')
