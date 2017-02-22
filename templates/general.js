@@ -74,10 +74,10 @@ ${name};
 }, {
   name: () => 'package.json',
   content: ({ moduleName, platforms }) => {
-    let dependencies = '"react-native": "^0.29.0"';
+    let dependencies = '"react-native": "^0.41.2"';
     if (platforms.indexOf('windows') >= 0) {
       dependencies += `,
-    "react-native-windows": "^0.29.0"
+    "react-native-windows": "0.41.0-rc.1"
 `;
     }
     return `
