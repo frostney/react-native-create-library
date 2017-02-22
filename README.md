@@ -24,7 +24,7 @@ Navigate into an empty directory to execute the command.
 $ react-native-create-library MyFancyLibrary
 ```
 
-This will create the library **in the current folder**.
+This will create the folder `MyFancyLibrary` in which the library will be created in.
 
 ```
 Usage: react-native-create-library [options] <name>

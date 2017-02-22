@@ -67,7 +67,7 @@ module.exports = ({
       platforms,
     };
 
-    const filename = template.name(args);
+    const filename = path.join(name, template.name(args));
     const baseDir = filename.split(path.basename(filename))[0];
 
     return createFolder(baseDir).then(() =>
