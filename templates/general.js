@@ -32,7 +32,7 @@ module.exports = [{
   	\`\`\`
       compile project(':${moduleName}')
   	\`\`\`
-`     ;
+`;
     }
 
     if (platforms.indexOf('windows') >= 0) {
@@ -44,7 +44,7 @@ module.exports = [{
 2. Open up your \`MainPage.cs\` app
   - Add \`using Cl.Json.${name};\` to the usings at the top of the file
   - Add \`new ${name}Package()\` to the \`List<IReactPackage>\` returned by the \`Packages\` method
-`     ;
+`;
     }
 
     return `
@@ -74,11 +74,11 @@ ${name};
 }, {
   name: () => 'package.json',
   content: ({ moduleName, platforms }) => {
-    var dependencies = '"react-native": "^0.29.0"';
+    let dependencies = '"react-native": "^0.29.0"';
     if (platforms.indexOf('windows') >= 0) {
       dependencies += `,
     "react-native-windows": "^0.29.0"
-`       ;
+`;
     }
     return `
 {
@@ -98,8 +98,8 @@ ${name};
     ${dependencies}
   }
 }
-`   ;
-  }
+`;
+  },
 }, {
   name: () => 'index.js',
   content: ({ name }) => `

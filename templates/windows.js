@@ -1,8 +1,9 @@
-﻿/* eslint max-len: 0 */
+/* eslint max-len: 0 */
 const uuid = require('uuid').v1().toUpperCase();
+
 module.exports = platform => [{
   name: ({ name }) => `${platform}/${name}.sln`,
-  content: ({ name }) => 
+  content: ({ name }) =>
 `Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
@@ -83,7 +84,7 @@ EndGlobal
   `,
 }, {
   name: () => `${platform}/.gitignore`,
-  content: () => 
+  content: () =>
 `*AppPackages*
 *BundleArtifacts*
 *ReactAssets*
@@ -165,7 +166,7 @@ packages/
 `,
 }, {
   name: ({ name }) => `${platform}/${name}/project.json`,
-  content: () => 
+  content: () =>
 `{
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0"
@@ -185,7 +186,7 @@ packages/
 `,
 }, {
   name: ({ name }) => `${platform}/${name}/${name}.csproj`,
-  content: ({ name }) => 
+  content: ({ name }) =>
 `<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\\$(MSBuildToolsVersion)\\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\\$(MSBuildToolsVersion)\\Microsoft.Common.props')" />
@@ -372,7 +373,7 @@ packages/
 `,
 }, {
   name: ({ name }) => `${platform}/${name}/${name}Module.cs`,
-  content: ({ name, namespace }) => 
+  content: ({ name, namespace }) =>
 `using ReactNative.Bridge;
 using System;
 using System.Collections.Generic;
@@ -409,7 +410,7 @@ namespace ${namespace}.${name}
 `,
 }, {
   name: ({ name }) => `${platform}/${name}/${name}Package.cs`,
-  content: ({ name, namespace }) => 
+  content: ({ name, namespace }) =>
 `using ReactNative.Bridge;
 using ReactNative.Modules.Core;
 using ReactNative.UIManager;
@@ -466,7 +467,7 @@ namespace ${namespace}.${name}
 `,
 }, {
   name: ({ name }) => `${platform}/${name}/Properties/${name}.rd.xml`,
-  content: ({ name }) => 
+  content: ({ name }) =>
 `<?xml version="1.0" encoding="utf-8"?>
 <!--
     This file contains Runtime Directives, specifications about types your application accesses
@@ -498,7 +499,7 @@ namespace ${namespace}.${name}
 `,
 }, {
   name: ({ name }) => `${platform}/${name}/Properties/AssemblyInfo.cs`,
-  content: ({ name }) => 
+  content: ({ name }) =>
 `using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
