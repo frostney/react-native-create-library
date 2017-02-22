@@ -2,7 +2,7 @@
 
 module.exports = [{
   name: () => 'README.md',
-  content: ({ moduleName, packageIdentifier, name, platforms }) => {
+  content: ({ moduleName, packageIdentifier, name, namespace, platforms }) => {
     let manualInstallation = '';
 
     if (platforms.indexOf('ios') >= 0) {
@@ -42,7 +42,7 @@ module.exports = [{
 
 1. In Visual Studio add the \`${name}.sln\` in \`node_modules/${moduleName}/windows/${name}.sln\` folder to their solution, reference from their app.
 2. Open up your \`MainPage.cs\` app
-  - Add \`using Cl.Json.${name};\` to the usings at the top of the file
+  - Add \`using ${namespace}.${name};\` to the usings at the top of the file
   - Add \`new ${name}Package()\` to the \`List<IReactPackage>\` returned by the \`Packages\` method
 `;
     }
