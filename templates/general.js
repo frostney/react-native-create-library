@@ -66,7 +66,7 @@ ${manualInstallation}
 \`\`\`javascript
 import ${name} from '${moduleName}';
 
-// TODO: What do with the module?
+// TODO: What to do with the module?
 ${name};
 \`\`\`
   `;
@@ -109,4 +109,73 @@ const { ${name} } = NativeModules;
 
 export default ${name};
 `,
+}, {
+  name: () => '.gitignore',
+  content: ({ platforms }) => {
+    let content = `
+# OSX
+#
+.DS_Store
+
+# node.js
+#
+node_modules/
+npm-debug.log
+yarn-error.log
+  `;
+
+    if (platforms.indexOf('ios') >= 0) {
+      content += `
+
+# Xcode
+#
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+project.xcworkspace
+      `;
+    }
+
+    if (platforms.indexOf('android') >= 0) {
+      content += `
+
+# Android/IntelliJ
+#
+build/
+.idea
+.gradle
+local.properties
+*.iml
+
+# BUCK
+buck-out/
+\\.buckd/
+*.keystore
+      `;
+    }
+
+    return content;
+  },
+}, {
+  name: () => '.gitattributes',
+  content: ({ platforms }) => {
+    if (platforms.indexOf('ios') >= 0) {
+      return '*.pbxproj -text';
+    }
+
+    return '';
+  }
 }];
