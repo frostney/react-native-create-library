@@ -6,7 +6,7 @@ module.exports = {
   name: 'create-library',
   description: 'creates a React Native library for different platforms',
   usage: '[options] <name>',
-  func: (config, args, options) => {
+  func: (args, config, options) => {
     const name = args[0];
     const prefix = options.prefix;
     const modulePrefix = options.modulePrefix;

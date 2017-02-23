@@ -12,7 +12,7 @@ program
   .usage(command.usage)
   .description(command.description)
   .action(function runAction() {
-    command.func({}, arguments, this.opts());
+    command.func(arguments, {}, this.opts());
   });
 
 (command.options || [])
