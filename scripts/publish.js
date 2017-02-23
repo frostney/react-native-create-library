@@ -10,10 +10,14 @@ content.name = ALTERNATE_NAME;
 
 fs.writeFileSync('../package.json', JSON.stringify(content, null, 2));
 
+shell.cd('..');
 shell.exec('npm publish');
+shell.cd('./scripts');
 
 content.name = DEFAULT_NAME;
 
 fs.writeFileSync('../package.json', JSON.stringify(content, null, 2));
 
+shell.cd('..');
 shell.exec('npm publish');
+shell.cd('./scripts');
