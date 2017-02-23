@@ -1,6 +1,16 @@
 module.exports = platform => [{
   name: () => `${platform}/build.gradle`,
   content: () => `
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.3.1'
+    }
+}
+
 apply plugin: 'com.android.library'
 
 android {
@@ -12,24 +22,18 @@ android {
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
-        ndk {
-            abiFilters "armeabi-v7a", "x86"
-        }
     }
     lintOptions {
-       warning 'InvalidPackage'
+        abortOnError false
     }
 }
 
-allprojects {
-    repositories {
-        jcenter()
-        maven { url "$projectDir/../../react-native/android" }
-    }
+repositories {
+    mavenCentral()
 }
 
 dependencies {
-    compile 'com.facebook.react:react-native:0.20.+'
+    compile 'com.facebook.react:react-native:+'
 }
   `,
 }, {
