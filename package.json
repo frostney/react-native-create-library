@@ -32,9 +32,9 @@
   "dependencies": {
     "commander": "^2.9.0",
     "mkdirp": "^0.5.1",
+    "node-emoji": "^1.5.1",
     "param-case": "^2.1.0",
     "pascal-case": "^2.0.0",
-    "path-exists": "^3.0.0",
     "update-notifier": "^2.1.0",
     "uuid": "^3.0.1"
   },
@@ -42,5 +42,8 @@
     "eslint": "^3.16.0",
     "eslint-config-airbnb-base": "^11.1.0",
     "eslint-plugin-import": "^2.2.0"
+  },
+  "rnpm": {
+    "plugin": "./command.js"
   }
 }

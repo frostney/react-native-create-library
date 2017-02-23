@@ -2,7 +2,6 @@ const path = require('path');
 
 const pascalCase = require('pascal-case');
 const paramCase = require('param-case');
-const pathExists = require('path-exists');
 
 const templates = require('./templates');
 const { hasPrefix, createFile, createFolder } = require('./utils');
@@ -32,11 +31,6 @@ module.exports = ({
       throw new Error(`The \`RCT\` name prefix is reserved for core React modules.
     Please use a different prefix.`);
     }
-  }
-
-  if (pathExists.sync(path.join(process.cwd(), 'package.json'))) {
-    throw new Error(`A \`package.json\` already exists in this path
-  Please run the application in a different path.`);
   }
 
   if (platforms.length === 0) {
