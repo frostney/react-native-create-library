@@ -23,6 +23,14 @@
     "android",
     "windows"
   ],
+  "files": [
+    "templates",
+    "utils",
+    "cli.js",
+    "command.js",
+    "lib.js",
+    "README.md"
+  ],
   "author": "Johannes Stein",
   "license": "MIT",
   "bugs": {
@@ -41,7 +49,8 @@
   "devDependencies": {
     "eslint": "^3.16.0",
     "eslint-config-airbnb-base": "^11.1.0",
-    "eslint-plugin-import": "^2.2.0"
+    "eslint-plugin-import": "^2.2.0",
+    "shelljs": "^0.7.6"
   },
   "rnpm": {
     "plugin": "./command.js"
