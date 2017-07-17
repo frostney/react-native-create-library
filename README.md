@@ -11,6 +11,9 @@ Why not use `react-native new-library`? Unfortunately that command doesn't creat
 
 Caution: This only creates native modules without a view component.
 
+### Alternatives
+[react-native-create-bridge](https://github.com/peggyrayzis/react-native-create-bridge)
+
 ## Installation
 Requirements: Node 6.0+
 ```
