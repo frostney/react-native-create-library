@@ -90,7 +90,7 @@ public class ${name}Package implements ReactPackage {
       return Arrays.<NativeModule>asList(new ${name}Module(reactContext));
     }
 
-    @Override
+    // Deprecated RN 0.47
     public List<Class<? extends JavaScriptModule>> createJSModules() {
       return Collections.emptyList();
     }
