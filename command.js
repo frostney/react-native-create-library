@@ -55,8 +55,7 @@ ${emoji.get('arrow_right')}  To get started type \`cd ./${name}\``);
   }, {
     command: '--namespace <namespace>',
     description: '(Windows only!) The namespace for the Windows module\n' +
-    ' (Default: The package identifier as PascalCase, which is `Com.Reactlibrary`)',
-    default: 'Com.Reactlibrary',
+    ' (Default: The name as PascalCase)',
   }, {
     command: '--platforms <platforms>',
     description: 'Platforms the library will be created for. (comma separated; default: `ios,android,windows`)',
