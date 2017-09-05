@@ -12,70 +12,81 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "${name}", "${name}\\${name}
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactNative", "..\\node_modules\\react-native-windows\\ReactWindows\\ReactNative\\ReactNative.csproj", "{C7673AD5-E3AA-468C-A5FD-FA38154E205C}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ReactNative.Shared", "..\\node_modules\\react-native-windows\\ReactWindows\\ReactNative.Shared\\ReactNative.Shared.shproj", "{EEA8B852-4D07-48E1-8294-A21AB5909FE5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ChakraBridge", "..\\node_modules\\react-native-windows\\ReactWindows\\ChakraBridge\\ChakraBridge.vcxproj", "{4B72C796-16D5-4E3A-81C0-3E36F531E578}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\\node_modules\\react-native-windows\\ReactWindows\\ReactNative.Shared\\ReactNative.Shared.projitems*{c7673ad5-e3aa-468c-a5fd-fa38154e205c}*SharedItemsImports = 4
+		..\\node_modules\\react-native-windows\\ReactWindows\\ReactNative.Shared\\ReactNative.Shared.projitems*{eea8b852-4d07-48e1-8294-a21ab5909fe5}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
-		Development|Any CPU = Development|Any CPU
 		Development|ARM = Development|ARM
 		Development|x64 = Development|x64
 		Development|x86 = Development|x86
-		Release|Any CPU = Release|Any CPU
 		Release|ARM = Release|ARM
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{${uuid}}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{${uuid}}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{${uuid}}.Debug|ARM.ActiveCfg = Debug|ARM
 		{${uuid}}.Debug|ARM.Build.0 = Debug|ARM
 		{${uuid}}.Debug|x64.ActiveCfg = Debug|x64
 		{${uuid}}.Debug|x64.Build.0 = Debug|x64
 		{${uuid}}.Debug|x86.ActiveCfg = Debug|x86
 		{${uuid}}.Debug|x86.Build.0 = Debug|x86
-		{${uuid}}.Development|Any CPU.ActiveCfg = Development|Any CPU
-		{${uuid}}.Development|Any CPU.Build.0 = Development|Any CPU
 		{${uuid}}.Development|ARM.ActiveCfg = Development|ARM
 		{${uuid}}.Development|ARM.Build.0 = Development|ARM
 		{${uuid}}.Development|x64.ActiveCfg = Development|x64
 		{${uuid}}.Development|x64.Build.0 = Development|x64
 		{${uuid}}.Development|x86.ActiveCfg = Development|x86
 		{${uuid}}.Development|x86.Build.0 = Development|x86
-		{${uuid}}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{${uuid}}.Release|Any CPU.Build.0 = Release|Any CPU
 		{${uuid}}.Release|ARM.ActiveCfg = Release|ARM
 		{${uuid}}.Release|ARM.Build.0 = Release|ARM
 		{${uuid}}.Release|x64.ActiveCfg = Release|x64
 		{${uuid}}.Release|x64.Build.0 = Release|x64
 		{${uuid}}.Release|x86.ActiveCfg = Release|x86
 		{${uuid}}.Release|x86.Build.0 = Release|x86
-		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Debug|ARM.ActiveCfg = Debug|ARM
 		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Debug|ARM.Build.0 = Debug|ARM
 		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Debug|x64.ActiveCfg = Debug|x64
 		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Debug|x64.Build.0 = Debug|x64
 		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Debug|x86.ActiveCfg = Debug|x86
 		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Debug|x86.Build.0 = Debug|x86
-		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Development|Any CPU.ActiveCfg = Debug|Any CPU
-		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Development|Any CPU.Build.0 = Debug|Any CPU
 		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Development|ARM.ActiveCfg = Debug|ARM
 		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Development|ARM.Build.0 = Debug|ARM
 		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Development|x64.ActiveCfg = Debug|x64
 		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Development|x64.Build.0 = Debug|x64
 		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Development|x86.ActiveCfg = Debug|x86
 		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Development|x86.Build.0 = Debug|x86
-		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Release|ARM.ActiveCfg = Release|ARM
 		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Release|ARM.Build.0 = Release|ARM
 		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Release|x64.ActiveCfg = Release|x64
 		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Release|x64.Build.0 = Release|x64
 		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Release|x86.ActiveCfg = Release|x86
-		{C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Release|x86.Build.0 = Release|x86
+    {C7673AD5-E3AA-468C-A5FD-FA38154E205C}.Release|x86.Build.0 = Release|x86
+		{4B72C796-16D5-4E3A-81C0-3E36F531E578}.Debug|ARM.ActiveCfg = Debug|ARM
+		{4B72C796-16D5-4E3A-81C0-3E36F531E578}.Debug|ARM.Build.0 = Debug|ARM
+		{4B72C796-16D5-4E3A-81C0-3E36F531E578}.Debug|x64.ActiveCfg = Debug|x64
+		{4B72C796-16D5-4E3A-81C0-3E36F531E578}.Debug|x64.Build.0 = Debug|x64
+		{4B72C796-16D5-4E3A-81C0-3E36F531E578}.Debug|x86.ActiveCfg = Debug|Win32
+		{4B72C796-16D5-4E3A-81C0-3E36F531E578}.Debug|x86.Build.0 = Debug|Win32
+		{4B72C796-16D5-4E3A-81C0-3E36F531E578}.Development|ARM.ActiveCfg = Debug|ARM
+		{4B72C796-16D5-4E3A-81C0-3E36F531E578}.Development|ARM.Build.0 = Debug|ARM
+		{4B72C796-16D5-4E3A-81C0-3E36F531E578}.Development|x64.ActiveCfg = Debug|x64
+		{4B72C796-16D5-4E3A-81C0-3E36F531E578}.Development|x64.Build.0 = Debug|x64
+		{4B72C796-16D5-4E3A-81C0-3E36F531E578}.Development|x86.ActiveCfg = Debug|Win32
+		{4B72C796-16D5-4E3A-81C0-3E36F531E578}.Development|x86.Build.0 = Debug|Win32
+		{4B72C796-16D5-4E3A-81C0-3E36F531E578}.Release|ARM.ActiveCfg = Release|ARM
+		{4B72C796-16D5-4E3A-81C0-3E36F531E578}.Release|ARM.Build.0 = Release|ARM
+		{4B72C796-16D5-4E3A-81C0-3E36F531E578}.Release|x64.ActiveCfg = Release|x64
+		{4B72C796-16D5-4E3A-81C0-3E36F531E578}.Release|x64.Build.0 = Release|x64
+		{4B72C796-16D5-4E3A-81C0-3E36F531E578}.Release|x86.ActiveCfg = Release|Win32
+		{4B72C796-16D5-4E3A-81C0-3E36F531E578}.Release|x86.Build.0 = Release|Win32    
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -165,11 +176,24 @@ packages/
 *project.lock.json
 `,
 }, {
+  name: ({ name }) => `${platform}/.npmignore`,
+  content: () =>
+`
+# Make sure we don't publish build artifacts to NPM
+ARM/
+Debug/
+x64/
+x86/
+bin/
+obj/
+.vs/
+`
+}, {
   name: ({ name }) => `${platform}/${name}/project.json`,
   content: () =>
 `{
   "dependencies": {
-    "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0"
+    "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2"
   },
   "frameworks": {
     "uap10.0": {}
@@ -192,12 +216,12 @@ packages/
   <Import Project="$(MSBuildExtensionsPath)\\$(MSBuildToolsVersion)\\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\\$(MSBuildToolsVersion)\\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProjectGuid>{${uuid}}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>${name}</RootNamespace>
-    <AssemblyName>${name}</AssemblyName>
+    <RootNamespace>${namespace}</RootNamespace>
+    <AssemblyName>${namespace}</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
@@ -209,25 +233,6 @@ packages/
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' != 'Development'">
     <ReactWindowsRoot>..\\..</ReactWindowsRoot>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\\Debug\\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\\Release\\</OutputPath>
-    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <PlatformTarget>x86</PlatformTarget>
@@ -295,36 +300,6 @@ packages/
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
-  <ItemGroup>
-    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <None Include="project.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\\AssemblyInfo.cs" />
-    <Compile Include="${name}Module.cs" />
-    <Compile Include="${name}Package.cs" />
-    <EmbeddedResource Include="Properties\\${name}.rd.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="$(ReactWindowsRoot)\\react-native-windows\\ReactWindows\\ReactNative\\ReactNative.csproj">
-      <Project>{c7673ad5-e3aa-468c-a5fd-fa38154e205c}</Project>
-      <Name>ReactNative</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
-    <VisualStudioVersion>14.0</VisualStudioVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Development|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\\Development\\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
-    <NoStdLib>true</NoStdLib>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Development|x86'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\\x86\\Development\\</OutputPath>
@@ -360,6 +335,25 @@ packages/
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <None Include="project.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\\AssemblyInfo.cs" />
+    <Compile Include="${name}Module.cs" />
+    <Compile Include="${name}Package.cs" />
+    <EmbeddedResource Include="Properties\\${name}.rd.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="$(ReactWindowsRoot)\\react-native-windows\\ReactWindows\\ReactNative\\ReactNative.csproj">
+      <Project>{c7673ad5-e3aa-468c-a5fd-fa38154e205c}</Project>
+      <Name>ReactNative</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\\Microsoft\\WindowsXaml\\v$(VisualStudioVersion)\\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

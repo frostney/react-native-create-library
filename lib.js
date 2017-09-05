@@ -57,7 +57,7 @@ module.exports = ({
       name: `${prefix}${pascalCase(name)}`,
       moduleName: `${modulePrefix}-${paramCase(name)}`,
       packageIdentifier,
-      namespace: namespace || pascalCase(packageIdentifier).split(/(?=[A-Z])/).join('.'),
+      namespace: namespace || pascalCase(name).split(/(?=[A-Z])/).join('.'),
       platforms,
     };
 
