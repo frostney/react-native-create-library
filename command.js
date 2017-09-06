@@ -38,24 +38,24 @@ ${emoji.get('arrow_right')}  To get started type \`cd ./${name}\``);
     });
   },
   options: [{
-    command: '--prefix <prefix>',
+    command: '--prefix [prefix]',
     description: 'The prefix for the library (Default: `RN`)',
     default: 'RN',
   }, {
     command: '--override-prefix',
     description: 'Overrides the prefix check and allows the name to begin with uppercase characters',
   }, {
-    command: '--module-prefix <modulePrefix>',
+    command: '--module-prefix [modulePrefix]',
     description: 'The module prefix for the library (Default: `react-native`)',
     default: 'react-native',
   }, {
-    command: '--package-identifier <packageIdentifier>',
+    command: '--package-identifier [packageIdentifier]',
     description: '(Android only!) The package name for the Android module (Default: `com.reactlibrary`)',
     default: 'com.reactlibrary',
   }, {
-    command: '--namespace <namespace>',
+    command: '--namespace [namespace]',
     description: '(Windows only!) The namespace for the Windows module\n' +
-    ' (Default: The name as PascalCase)',
+    ' (Default: The name as PascalCase)'
   }, {
     command: '--platforms <platforms>',
     description: 'Platforms the library will be created for. (comma separated; default: `ios,android,windows`)',
