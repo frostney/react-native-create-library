@@ -210,7 +210,7 @@ obj/
 `,
 }, {
   name: ({ name }) => `${platform}/${name}/${name}.csproj`,
-  content: ({ name }) =>
+  content: ({ name, namespace }) =>
 `<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\\$(MSBuildToolsVersion)\\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\\$(MSBuildToolsVersion)\\Microsoft.Common.props')" />
