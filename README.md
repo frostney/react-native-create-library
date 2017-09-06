@@ -40,7 +40,7 @@ Options:
   --module-prefix <modulePrefix>            The module prefix for the library (Default: `react-native`)
   --package-identifier <packageIdentifier>  (Android only!) The package name for the Android module (Default: `com.reactlibrary`)
   --namespace <namespace>                   (Windows only!) The namespace for the Windows module
-   (Default: The package identifier as PascalCase, which is `Com.Reactlibrary`)
+   (Default: The name as PascalCase)
   --platforms <platforms>                   Platforms the library will be created for. (comma separated; default: `ios,android,windows`)
 ```
 
