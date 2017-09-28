@@ -29,6 +29,11 @@ $ react-native-create-library MyFancyLibrary
 
 This will create the folder `MyFancyLibrary` in which the library will be created in.
 
+Now install dependencies by running this command in the newly created library.
+```
+$ npm install
+```
+
 ```
 Usage: react-native-create-library [options] <name>
 

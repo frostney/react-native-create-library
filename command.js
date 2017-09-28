@@ -28,7 +28,7 @@ module.exports = {
       console.log(`
 ${emoji.get('books')}  Created library ${name} in \`./${name}\`.
 ${emoji.get('clock9')}  It took ${Date.now() - beforeCreation}ms.
-${emoji.get('arrow_right')}  To get started type \`cd ./${name}\``);
+${emoji.get('arrow_right')}  To get started type \`cd ./${name}\` and run \`npm install\``);
     }).catch((err) => {
       console.error(`Error while creating library ${name}`);
 
