@@ -18,6 +18,7 @@ module.exports = {
     const authorName = options.authorName;
     const authorEmail = options.authorEmail;
     const license = options.license;
+    const generateExample = options.generateExample;
 
     const beforeCreation = Date.now();
     createLibrary({
@@ -31,7 +32,8 @@ module.exports = {
       githubAccount,
       authorName,
       authorEmail,
-      license
+      license,
+      generateExample,
     }).then(() => {
       console.log(`
 ${emoji.get('books')}  Created library ${name} in \`./${name}\`.
@@ -84,5 +86,9 @@ ${emoji.get('arrow_right')}  To get started type \`cd ./${name}\` and run \`npm 
     command: '--license [license]',
     description: 'The license type (Default: `Apache-2.0`)',
     default: 'Apache-2.0',    
+  }, {
+    command: '--generate-example',
+    description: 'Generates an example project for iOS and Android and links the library to it',
+    default: 'false',
   }]
 };
