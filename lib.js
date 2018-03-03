@@ -37,9 +37,14 @@ module.exports = ({
     throw new Error('Please specify at least one platform to generate the library.');
   }
 
-  if (prefix === 'RN') {
-    console.warn(`While \`RN\` is the default prefix,
-  it is recommended to customize the prefix.`);
+  if (prefix === DEFAULT_PREFIX) {
+    console.warn(`While \`${DEFAULT_PREFIX}\` is the default prefix,
+      it is recommended to customize the prefix.`);
+  }
+
+  if (packageIdentifier === DEFAULT_PACKAGE_IDENTIFIER) {
+    console.warn(`While \`{DEFAULT_PACKAGE_IDENTIFIER}\` is the default package
+      identifier, it is recommended to customize the package identifier.`);
   }
 
   return Promise.all(templates.filter((template) => {
