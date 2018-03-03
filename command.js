@@ -14,6 +14,9 @@ module.exports = {
     const namespace = options.namespace;
     const platforms = (options.platforms) ? options.platforms.split(',') : options.platforms;
     const overridePrefix = options.overridePrefix;
+    const authorGithub = options.authorGithub;
+    const authorName = options.authorName;
+    const authorEmail = options.authorEmail;
 
     const beforeCreation = Date.now();
     createLibrary({
@@ -24,6 +27,9 @@ module.exports = {
       platforms,
       namespace,
       overridePrefix,
+      authorGithub,
+      authorName,
+      authorEmail
     }).then(() => {
       console.log(`
 ${emoji.get('books')}  Created library ${name} in \`./${name}\`.
@@ -60,5 +66,17 @@ ${emoji.get('arrow_right')}  To get started type \`cd ./${name}\` and run \`npm 
     command: '--platforms <platforms>',
     description: 'Platforms the library will be created for. (comma separated; default: `ios,android,windows`)',
     default: 'ios,android,windows',
+  }, {
+    command: '--author-github [authorGithub]',
+    description: 'The author\'s github name (Default: `github_account_name`)',
+    default: 'github_account_name',    
+  }, {
+    command: '--author-name [authorName]',
+    description: 'The author\'s name (Default: `Your Name`)',
+    default: 'Your Name',    
+  }, {
+    command: '--author-email [authorEmail]',
+    description: 'The author\'s email (Default: `yourname@email.com`)',
+    default: 'yourname@email.com',    
   }]
 };

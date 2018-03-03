@@ -73,7 +73,7 @@ ${name};
   },
 }, {
   name: () => 'package.json',
-  content: ({ moduleName, platforms }) => {
+  content: ({ moduleName, platforms, authorGithub, authorName, authorEmail }) => {
     let dependencies = `
     "react": "16.0.0-alpha.6",
     "react-native": "^0.44.1"`;
@@ -94,16 +94,16 @@ ${name};
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/github_account_name/${moduleName}.git",
-    "baseUrl": "https://github.com/github_account_name/${moduleName}"
+    "url": "git+https://github.com/${authorGithub}/${moduleName}.git",
+    "baseUrl": "https://github.com/${authorGithub}/${moduleName}"
   },
   "keywords": [
     "react-native"
   ],
   "author": {
-    "username": "your_username",
-    "name": "Your Name",
-    "email": "your_name@email.com"
+    "username": "${authorGithub}",
+    "name": "${authorName}",
+    "email": "${authorEmail}"
   },
   "license": "Apache-2.0",
   "licenseFilename": "LICENSE",

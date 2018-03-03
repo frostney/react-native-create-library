@@ -47,6 +47,9 @@ Options:
   --namespace <namespace>                   (Windows only!) The namespace for the Windows module
    (Default: The name as PascalCase)
   --platforms <platforms>                   Platforms the library will be created for. (comma separated; default: `ios,android,windows`)
+  --author-github <github_username>         The author's github username
+  --author-name <name>                      The author's name
+  --author-email <email>                    The author's email
 ```
 
 ## Programmatic usage
@@ -69,6 +72,9 @@ createLibrary({
   platforms: Array, /* Platforms the library will be created for. (Default: ['ios', 'android', 'windows']) */
   packageIdentifier: String, /* (Android only!) The package name for the Android module (Default: com.reactlibrary) */
   namespace: String, /* (Windows only!) The namespace for the Windows module (Default: The package identifier as PascalCase, which is `Com.Reactlibrary`) */
+  authorGithub: String, /* The author's github username */
+  authorName: String, /* The author's name */
+  authorEmail: String, /* The author's email */ 
 }
 ```
 
