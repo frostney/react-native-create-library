@@ -51,6 +51,7 @@ Options:
   --author-name <name>                      The author's name (Default: `Your Name`)
   --author-email <email>                    The author's email (Default: `yourname@email.com`)
   --license <license>                       The license type of this library (Default: `Apache-2.0`)
+  --generate-example <shouldGenerate>       Will generate a RN example project and link the new library to it (Default: `false`)
 ```
 
 ## Programmatic usage
@@ -77,6 +78,7 @@ createLibrary({
   authorName: String, /* The author's name (Default: `Your Name`) */
   authorEmail: String, /* The author's email (Default: `yourname@email.com`) */ 
   license: String, /* The license type of this library (Default: `Apache-2.0`) */
+  generateExample: Boolean, /* Will generate a RN example project and link the new library to it (Default: `false`) */
 }
 ```
 
