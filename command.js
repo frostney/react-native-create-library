@@ -17,6 +17,7 @@ module.exports = {
     const authorGithub = options.authorGithub;
     const authorName = options.authorName;
     const authorEmail = options.authorEmail;
+    const license = options.license;
 
     const beforeCreation = Date.now();
     createLibrary({
@@ -29,7 +30,8 @@ module.exports = {
       overridePrefix,
       authorGithub,
       authorName,
-      authorEmail
+      authorEmail,
+      license
     }).then(() => {
       console.log(`
 ${emoji.get('books')}  Created library ${name} in \`./${name}\`.
@@ -78,5 +80,9 @@ ${emoji.get('arrow_right')}  To get started type \`cd ./${name}\` and run \`npm 
     command: '--author-email [authorEmail]',
     description: 'The author\'s email (Default: `yourname@email.com`)',
     default: 'yourname@email.com',    
+  }, {
+    command: '--license [license]',
+    description: 'The license type (Default: `Apache-2.0`)',
+    default: 'Apache-2.0',    
   }]
 };

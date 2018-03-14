@@ -73,7 +73,7 @@ ${name};
   },
 }, {
   name: () => 'package.json',
-  content: ({ moduleName, platforms, authorGithub, authorName, authorEmail }) => {
+  content: ({ moduleName, platforms, authorGithub, authorName, authorEmail, license }) => {
     let dependencies = `
     "react": "16.0.0-alpha.6",
     "react-native": "^0.44.1"`;
@@ -105,7 +105,7 @@ ${name};
     "name": "${authorName}",
     "email": "${authorEmail}"
   },
-  "license": "Apache-2.0",
+  "license": "${license}",
   "licenseFilename": "LICENSE",
   "readmeFilename": "README.md",
   "peerDependencies": {

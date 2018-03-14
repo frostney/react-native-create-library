@@ -15,6 +15,7 @@ const DEFAULT_OVERRIDE_PREFIX = false;
 const DEFAULT_AUTHOR_GITHUB = 'github_account_name'
 const DEFAULT_AUTHOR_NAME = 'Your Name'
 const DEFAULT_AUTHOR_EMAIL = 'yourname@email.com'
+const DEFAULT_LICENSE = 'Apache-2.0'
 
 module.exports = ({
   namespace,
@@ -27,6 +28,7 @@ module.exports = ({
   authorGithub = DEFAULT_AUTHOR_GITHUB,
   authorName = DEFAULT_AUTHOR_NAME,
   authorEmail = DEFAULT_AUTHOR_EMAIL,
+  license = DEFAULT_LICENSE,
 }) => {
   if (!overridePrefix) {
     if (hasPrefix(name)) {
@@ -73,6 +75,7 @@ module.exports = ({
       authorGithub,
       authorName,
       authorEmail,
+      license,
     };
 
     const filename = path.join(name, template.name(args));

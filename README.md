@@ -50,6 +50,7 @@ Options:
   --author-github <github_username>         The author's github username (Default: `github_account_name`)
   --author-name <name>                      The author's name (Default: `Your Name`)
   --author-email <email>                    The author's email (Default: `yourname@email.com`)
+  --license <license>                       The license type of this library (Default: `Apache-2.0`)
 ```
 
 ## Programmatic usage
@@ -75,6 +76,7 @@ createLibrary({
   authorGithub: String, /* The author's github username (Default: `github_account_name`) */
   authorName: String, /* The author's name (Default: `Your Name`) */
   authorEmail: String, /* The author's email (Default: `yourname@email.com`) */ 
+  license: String, /* The license type of this library (Default: `Apache-2.0`) */
 }
 ```
 
