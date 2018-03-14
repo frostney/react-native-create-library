@@ -34,11 +34,8 @@ android {
 repositories {
     maven {
         // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
-<<<<<<< HEAD
         // Matches the RN Hello World template
         // https://github.com/facebook/react-native/blob/1e8f3b11027fe0a7514b4fc97d0798d3c64bc895/local-cli/templates/HelloWorld/android/build.gradle#L21
-=======
->>>>>>> e2d7a55... Adds Support For Generating Maven Package For Android Library
         url "$projectDir/../node_modules/react-native/android"
     }
     mavenCentral()
