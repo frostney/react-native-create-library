@@ -14,7 +14,7 @@ module.exports = {
     const namespace = options.namespace;
     const platforms = (options.platforms) ? options.platforms.split(',') : options.platforms;
     const overridePrefix = options.overridePrefix;
-    const authorGithub = options.authorGithub;
+    const githubAccount = options.githubAccount;
     const authorName = options.authorName;
     const authorEmail = options.authorEmail;
     const license = options.license;
@@ -28,7 +28,7 @@ module.exports = {
       platforms,
       namespace,
       overridePrefix,
-      authorGithub,
+      githubAccount,
       authorName,
       authorEmail,
       license
@@ -69,9 +69,9 @@ ${emoji.get('arrow_right')}  To get started type \`cd ./${name}\` and run \`npm 
     description: 'Platforms the library will be created for. (comma separated; default: `ios,android,windows`)',
     default: 'ios,android,windows',
   }, {
-    command: '--author-github [authorGithub]',
-    description: 'The author\'s github name (Default: `github_account_name`)',
-    default: 'github_account_name',    
+    command: '--github-account [githubAccount]',
+    description: 'The github account where the library is hosted (Default: `github_account`)',
+    default: 'github_account',    
   }, {
     command: '--author-name [authorName]',
     description: 'The author\'s name (Default: `Your Name`)',
