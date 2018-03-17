@@ -106,9 +106,14 @@ module.exports = ({
         return;
       }
       // Adds and links the created library project
-      const pathExampleApp = './' + name + '/example';
+      const pathExampleApp = `./${name}/example`;
       const options = { cwd: pathExampleApp, stdio:'inherit'};
-      execSync('yarn add file:../', options);
+      try {
+        execSync('yarn add file:../', options);
+      } catch (e) {
+        execSync('npm install ../', options);
+        execSync('npm install', options);
+      }
       execSync('react-native link', options);
     });
 };

@@ -89,6 +89,5 @@ ${emoji.get('arrow_right')}  To get started type \`cd ./${name}\` and run \`npm 
   }, {
     command: '--generate-example',
     description: 'Generates an example project for iOS and Android and links the library to it',
-    default: 'false',
   }]
 };
