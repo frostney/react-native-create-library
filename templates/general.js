@@ -73,7 +73,7 @@ ${name};
   },
 }, {
   name: () => 'package.json',
-  content: ({ moduleName, platforms }) => {
+  content: ({ moduleName, platforms, githubAccount, authorName, authorEmail, license }) => {
     let dependencies = `
     "react": "16.0.0-alpha.6",
     "react-native": "^0.44.1"`;
@@ -85,17 +85,28 @@ ${name};
     return `
 {
   "name": "${moduleName}",
+  "title": "${moduleName.split('-').map(word => word[0].toUpperCase() + word.substr(1)).join(' ')}",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \\"Error: no test specified\\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/${githubAccount}/${moduleName}.git",
+    "baseUrl": "https://github.com/${githubAccount}/${moduleName}"
+  },
   "keywords": [
     "react-native"
   ],
-  "author": "",
-  "license": "",
+  "author": {
+    "name": "${authorName}",
+    "email": "${authorEmail}"
+  },
+  "license": "${license}",
+  "licenseFilename": "LICENSE",
+  "readmeFilename": "README.md",
   "peerDependencies": {
     ${dependencies}
   },

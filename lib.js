@@ -12,6 +12,10 @@ const DEFAULT_MODULE_PREFIX = 'react-native';
 const DEFAULT_PACKAGE_IDENTIFIER = 'com.reactlibrary';
 const DEFAULT_PLATFORMS = ['android', 'ios', 'windows'];
 const DEFAULT_OVERRIDE_PREFIX = false;
+const DEFAULT_GITHUB_ACCOUNT = 'github_account'
+const DEFAULT_AUTHOR_NAME = 'Your Name'
+const DEFAULT_AUTHOR_EMAIL = 'yourname@email.com'
+const DEFAULT_LICENSE = 'Apache-2.0'
 
 module.exports = ({
   namespace,
@@ -21,6 +25,10 @@ module.exports = ({
   packageIdentifier = DEFAULT_PACKAGE_IDENTIFIER,
   platforms = DEFAULT_PLATFORMS,
   overridePrefix = DEFAULT_OVERRIDE_PREFIX,
+  githubAccount = DEFAULT_GITHUB_ACCOUNT,
+  authorName = DEFAULT_AUTHOR_NAME,
+  authorEmail = DEFAULT_AUTHOR_EMAIL,
+  license = DEFAULT_LICENSE,
 }) => {
   if (!overridePrefix) {
     if (hasPrefix(name)) {
@@ -64,6 +72,10 @@ module.exports = ({
       packageIdentifier,
       namespace: namespace || pascalCase(name).split(/(?=[A-Z])/).join('.'),
       platforms,
+      githubAccount,
+      authorName,
+      authorEmail,
+      license,
     };
 
     const filename = path.join(name, template.name(args));

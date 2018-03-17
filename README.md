@@ -47,6 +47,10 @@ Options:
   --namespace <namespace>                   (Windows only!) The namespace for the Windows module
    (Default: The name as PascalCase)
   --platforms <platforms>                   Platforms the library will be created for. (comma separated; default: `ios,android,windows`)
+  --github-account <github_account>         The github account where the library is hosted (Default: `github_account`)
+  --author-name <name>                      The author's name (Default: `Your Name`)
+  --author-email <email>                    The author's email (Default: `yourname@email.com`)
+  --license <license>                       The license type of this library (Default: `Apache-2.0`)
 ```
 
 ## Programmatic usage
@@ -69,6 +73,10 @@ createLibrary({
   platforms: Array, /* Platforms the library will be created for. (Default: ['ios', 'android', 'windows']) */
   packageIdentifier: String, /* (Android only!) The package name for the Android module (Default: com.reactlibrary) */
   namespace: String, /* (Windows only!) The namespace for the Windows module (Default: The package identifier as PascalCase, which is `Com.Reactlibrary`) */
+  githubAccount: String, /* The github account where the library is hosted (Default: `github_account`) */
+  authorName: String, /* The author's name (Default: `Your Name`) */
+  authorEmail: String, /* The author's email (Default: `yourname@email.com`) */ 
+  license: String, /* The license type of this library (Default: `Apache-2.0`) */
 }
 ```
 

@@ -14,6 +14,10 @@ module.exports = {
     const namespace = options.namespace;
     const platforms = (options.platforms) ? options.platforms.split(',') : options.platforms;
     const overridePrefix = options.overridePrefix;
+    const githubAccount = options.githubAccount;
+    const authorName = options.authorName;
+    const authorEmail = options.authorEmail;
+    const license = options.license;
 
     const beforeCreation = Date.now();
     createLibrary({
@@ -24,6 +28,10 @@ module.exports = {
       platforms,
       namespace,
       overridePrefix,
+      githubAccount,
+      authorName,
+      authorEmail,
+      license
     }).then(() => {
       console.log(`
 ${emoji.get('books')}  Created library ${name} in \`./${name}\`.
@@ -60,5 +68,21 @@ ${emoji.get('arrow_right')}  To get started type \`cd ./${name}\` and run \`npm 
     command: '--platforms <platforms>',
     description: 'Platforms the library will be created for. (comma separated; default: `ios,android,windows`)',
     default: 'ios,android,windows',
+  }, {
+    command: '--github-account [githubAccount]',
+    description: 'The github account where the library is hosted (Default: `github_account`)',
+    default: 'github_account',    
+  }, {
+    command: '--author-name [authorName]',
+    description: 'The author\'s name (Default: `Your Name`)',
+    default: 'Your Name',    
+  }, {
+    command: '--author-email [authorEmail]',
+    description: 'The author\'s email (Default: `yourname@email.com`)',
+    default: 'yourname@email.com',    
+  }, {
+    command: '--license [license]',
+    description: 'The license type (Default: `Apache-2.0`)',
+    default: 'Apache-2.0',    
   }]
 };
