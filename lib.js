@@ -58,17 +58,14 @@ module.exports = ({
       identifier, it is recommended to customize the package identifier.`);
   }
 
-  return Promise
-    .resolve()
+  return createFolder(name)
     .then(() => {
       if (!generateExample) {
-        return
+        return Promise.resolve()
       }
       // Note: The example has to be created first because it will fail if there
       // is already a package.json in the folder in which the command is executed.
-      return createFolder(name).then(() => {
-        execSync('react-native init example', { cwd: './' + name, stdio:'inherit'});
-      });
+      return execSync('react-native init example', { cwd: './' + name, stdio:'inherit'});
     })
     .then(() => {
       return Promise.all(templates.filter((template) => {
@@ -103,7 +100,7 @@ module.exports = ({
     })
     .then(() => {
       if (!generateExample) {
-        return;
+        return Promise.resolve();
       }
       // Adds and links the created library project
       const pathExampleApp = `./${name}/example`;
