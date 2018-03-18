@@ -5,6 +5,7 @@ const paramCase = require('param-case');
 
 const templates = require('./templates');
 const { hasPrefix, createFile, createFolder } = require('./utils');
+const { execSync } = require('child_process');
 
 const DEFAULT_NAME = 'Library';
 const DEFAULT_PREFIX = 'RN';
@@ -16,6 +17,7 @@ const DEFAULT_GITHUB_ACCOUNT = 'github_account'
 const DEFAULT_AUTHOR_NAME = 'Your Name'
 const DEFAULT_AUTHOR_EMAIL = 'yourname@email.com'
 const DEFAULT_LICENSE = 'Apache-2.0'
+const DEFAULT_GENERATE_EXAMPLE = false;
 
 module.exports = ({
   namespace,
@@ -29,6 +31,7 @@ module.exports = ({
   authorName = DEFAULT_AUTHOR_NAME,
   authorEmail = DEFAULT_AUTHOR_EMAIL,
   license = DEFAULT_LICENSE,
+  generateExample = DEFAULT_GENERATE_EXAMPLE,
 }) => {
   if (!overridePrefix) {
     if (hasPrefix(name)) {
@@ -55,34 +58,59 @@ module.exports = ({
       identifier, it is recommended to customize the package identifier.`);
   }
 
-  return Promise.all(templates.filter((template) => {
-    if (template.platform) {
-      return (platforms.indexOf(template.platform) >= 0);
-    }
+  return createFolder(name)
+    .then(() => {
+      if (!generateExample) {
+        return Promise.resolve()
+      }
+      // Note: The example has to be created first because it will fail if there
+      // is already a package.json in the folder in which the command is executed.
+      return execSync('react-native init example', { cwd: './' + name, stdio:'inherit'});
+    })
+    .then(() => {
+      return Promise.all(templates.filter((template) => {
+        if (template.platform) {
+          return (platforms.indexOf(template.platform) >= 0);
+        }
 
-    return true;
-  }).map((template) => {
-    if (!template.name) {
-      return Promise.resolve();
-    }
+        return true;
+      }).map((template) => {
+        if (!template.name) {
+          return Promise.resolve();
+        }
+        const args = {
+          name: `${prefix}${pascalCase(name)}`,
+          moduleName: `${modulePrefix}-${paramCase(name)}`,
+          packageIdentifier,
+          namespace: namespace || pascalCase(name).split(/(?=[A-Z])/).join('.'),
+          platforms,
+          githubAccount,
+          authorName,
+          authorEmail,
+          license,
+        };
 
-    const args = {
-      name: `${prefix}${pascalCase(name)}`,
-      moduleName: `${modulePrefix}-${paramCase(name)}`,
-      packageIdentifier,
-      namespace: namespace || pascalCase(name).split(/(?=[A-Z])/).join('.'),
-      platforms,
-      githubAccount,
-      authorName,
-      authorEmail,
-      license,
-    };
-
-    const filename = path.join(name, template.name(args));
-    const baseDir = filename.split(path.basename(filename))[0];
-
-    return createFolder(baseDir).then(() =>
-      createFile(filename, template.content(args))
-    );
-  }));
+        const filename = path.join(name, template.name(args));
+        var baseDir = filename.split(path.basename(filename))[0];
+        
+        return createFolder(baseDir).then(() =>
+          createFile(filename, template.content(args))
+        );
+      }));
+    })
+    .then(() => {
+      if (!generateExample) {
+        return Promise.resolve();
+      }
+      // Adds and links the created library project
+      const pathExampleApp = `./${name}/example`;
+      const options = { cwd: pathExampleApp, stdio:'inherit'};
+      try {
+        execSync('yarn add file:../', options);
+      } catch (e) {
+        execSync('npm install ../', options);
+        execSync('npm install', options);
+      }
+      execSync('react-native link', options);
+    });
 };
