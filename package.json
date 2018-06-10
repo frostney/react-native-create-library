@@ -39,6 +39,7 @@
   "homepage": "https://github.com/frostney/react-native-create-library#readme",
   "dependencies": {
     "commander": "^2.9.0",
+    "jsonfile": "^4.0.0",
     "mkdirp": "^0.5.1",
     "node-emoji": "^1.5.1",
     "param-case": "^2.1.0",

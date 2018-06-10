@@ -4,7 +4,7 @@ const pascalCase = require('pascal-case');
 const paramCase = require('param-case');
 
 const templates = require('./templates');
-const { hasPrefix, createFile, createFolder } = require('./utils');
+const { hasPrefix, createFile, createFolder, npmAddScriptSync, exec } = require('./utils');
 const { execSync } = require('child_process');
 
 const DEFAULT_NAME = 'Library';
@@ -13,11 +13,20 @@ const DEFAULT_MODULE_PREFIX = 'react-native';
 const DEFAULT_PACKAGE_IDENTIFIER = 'com.reactlibrary';
 const DEFAULT_PLATFORMS = ['android', 'ios', 'windows'];
 const DEFAULT_OVERRIDE_PREFIX = false;
-const DEFAULT_GITHUB_ACCOUNT = 'github_account'
-const DEFAULT_AUTHOR_NAME = 'Your Name'
-const DEFAULT_AUTHOR_EMAIL = 'yourname@email.com'
-const DEFAULT_LICENSE = 'Apache-2.0'
+const DEFAULT_GITHUB_ACCOUNT = 'github_account';
+const DEFAULT_AUTHOR_NAME = 'Your Name';
+const DEFAULT_AUTHOR_EMAIL = 'yourname@email.com';
+const DEFAULT_LICENSE = 'Apache-2.0';
 const DEFAULT_GENERATE_EXAMPLE = false;
+
+const renderTemplate = (name, template, templateArgs) => {
+  const filename = path.join(name, template.name(templateArgs));
+  const baseDir = filename.split(path.basename(filename))[0];
+
+  return createFolder(baseDir).then(() =>
+    createFile(filename, template.content(templateArgs))
+  );
+}
 
 module.exports = ({
   namespace,
@@ -58,16 +67,9 @@ module.exports = ({
       identifier, it is recommended to customize the package identifier.`);
   }
 
-  const moduleName = rootFolderName = `${modulePrefix}-${paramCase(name)}`;
+  const moduleName = `${modulePrefix}-${paramCase(name)}`;
+  const rootFolderName = moduleName;
   return createFolder(rootFolderName)
-    .then(() => {
-      if (!generateExample) {
-        return Promise.resolve()
-      }
-      // Note: The example has to be created first because it will fail if there
-      // is already a package.json in the folder in which the command is executed.
-      return execSync('react-native init example', { cwd: './' + rootFolderName, stdio:'inherit'});
-    })
     .then(() => {
       return Promise.all(templates.filter((template) => {
         if (template.platform) {
@@ -79,7 +81,7 @@ module.exports = ({
         if (!template.name) {
           return Promise.resolve();
         }
-        const args = {
+        const templateArgs = {
           name: `${prefix}${pascalCase(name)}`,
           moduleName,
           packageIdentifier,
@@ -89,29 +91,52 @@ module.exports = ({
           authorName,
           authorEmail,
           license,
+          generateExample,
         };
 
-        const filename = path.join(rootFolderName, template.name(args));
-        var baseDir = filename.split(path.basename(filename))[0];
-        
-        return createFolder(baseDir).then(() =>
-          createFile(filename, template.content(args))
-        );
+        return renderTemplate(rootFolderName, template, templateArgs);
       }));
     })
     .then(() => {
+      // Generate the example if necessary
       if (!generateExample) {
         return Promise.resolve();
       }
-      // Adds and links the created library project
-      const pathExampleApp = `./${name}/example`;
-      const options = { cwd: pathExampleApp, stdio:'inherit'};
-      try {
-        execSync('yarn add file:../', options);
-      } catch (e) {
-        execSync('npm install ../', options);
-        execSync('npm install', options);
-      }
-      execSync('react-native link', options);
+
+      const initExampleOptions = { cwd: `./${rootFolderName}`, stdio: 'inherit' };
+      return exec('react-native init example', initExampleOptions)
+        .then(() => {
+          // Execute the example template
+          const exampleTemplates = require('./templates/example');
+          return Promise.all(
+            exampleTemplates.map((template) => {
+              return renderTemplate(rootFolderName, template);
+            })
+          );
+        })
+        .then(() => {
+          // Adds and link the new library
+          return new Promise((resolve, reject) => {
+            // Add postinstall script to example package.json
+            const pathExampleApp = `./${rootFolderName}/example`;
+            const moduleName = `${modulePrefix}-${paramCase(name)}`;
+            npmAddScriptSync(`${pathExampleApp}/package.json`, {
+              key: 'postinstall',
+              value: `node ../scripts/examples_postinstall.js node_modules/${moduleName}`
+            });
+
+            // Add and link the new library
+            const addLinkLibraryOptions = { cwd: pathExampleApp, stdio: 'inherit' };
+            try {
+              execSync('yarn add file:../', addLinkLibraryOptions);
+            } catch (e) {
+              execSync('npm install ../', addLinkLibraryOptions);
+              execSync('npm install', addLinkLibraryOptions);
+            }
+            execSync('react-native link', addLinkLibraryOptions);
+
+            return resolve();
+          });
+        });
     });
 };
