@@ -20,7 +20,7 @@ module.exports = [{
       manualInstallation += `
 #### Android
 
-1. Open up \`android/app/src/main/java/[...]/MainActivity.java\`
+1. Open up \`android/app/src/main/java/[...]/MainApplication.java\`
   - Add \`import ${packageIdentifier}.${name}Package;\` to the imports at the top of the file
   - Add \`new ${name}Package()\` to the list returned by the \`getPackages()\` method
 2. Append the following lines to \`android/settings.gradle\`:
