@@ -1,7 +1,6 @@
 module.exports = platform => [{
   name: () => `${platform}/build.gradle`,
-  content: ({ packageIdentifier }) => `
-buildscript {
+  content: ({ packageIdentifier }) => `buildscript {
     repositories {
         jcenter()
     }
@@ -120,20 +119,18 @@ afterEvaluate { project ->
         }
     }
 }
-  `,
+`,
 }, {
   name: () => `${platform}/src/main/AndroidManifest.xml`,
-  content: ({ packageIdentifier }) => `
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  content: ({ packageIdentifier }) => `<manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="${packageIdentifier}">
 
 </manifest>
-  `,
+`,
 }, {
   name: ({ packageIdentifier, name }) =>
     `${platform}/src/main/java/${packageIdentifier.split('.').join('/')}/${name}Module.java`,
-  content: ({ packageIdentifier, name }) => `
-package ${packageIdentifier};
+  content: ({ packageIdentifier, name }) => `package ${packageIdentifier};
 
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -162,8 +159,7 @@ public class ${name}Module extends ReactContextBaseJavaModule {
 }, {
   name: ({ packageIdentifier, name }) =>
     `${platform}/src/main/java/${packageIdentifier.split('.').join('/')}/${name}Package.java`,
-  content: ({ packageIdentifier, name }) => `
-package ${packageIdentifier};
+  content: ({ packageIdentifier, name }) => `package ${packageIdentifier};
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -189,11 +185,11 @@ public class ${name}Package implements ReactPackage {
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
         return Collections.emptyList();
     }
-}`,
+}
+`,
 }, {
   name: () => `${platform}/README.md`,
-  content: () => `
-README
+  content: () => `README
 ======
 
 If you want to publish the lib as a maven dependency, follow these steps before publishing a new version to npm:
@@ -207,4 +203,5 @@ sdk.dir=/Users/{username}/Library/Android/sdk
 3. Delete the \`maven\` folder
 4. Run \`sudo ./gradlew installArchives\`
 5. Verify that latest set of generated files is in the maven folder with the correct version number
-`}];
+`
+}];

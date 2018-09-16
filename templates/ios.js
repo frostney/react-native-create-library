@@ -27,12 +27,10 @@ Pod::Spec.new do |s|
   #s.dependency "others"
 end
 
-  `,
+`,
 }, {
-
   name: ({ name }) => `${platform}/${name}.h`,
-  content: ({ name }) => `
-#if __has_include(<React/RCTBridgeModule.h>)
+  content: ({ name }) => `#if __has_include(<React/RCTBridgeModule.h>)
 #import <React/RCTBridgeModule.h>
 #else
 #import "RCTBridgeModule.h"
@@ -41,11 +39,10 @@ end
 @interface ${name} : NSObject <RCTBridgeModule>
 
 @end
-  `,
+`,
 }, {
   name: ({ name }) => `${platform}/${name}.m`,
-  content: ({ name }) => `
-#import "${name}.h"
+  content: ({ name }) => `#import "${name}.h"
 
 @implementation ${name}
 
@@ -62,7 +59,7 @@ RCT_EXPORT_METHOD(sampleMethod:(NSString *)stringArgument numberParameter:(nonnu
 }
 
 @end
-  `,
+`,
 }, {
   name: ({ name }) => `${platform}/${name}.xcworkspace/contents.xcworkspacedata`,
   content: ({ name }) => `<?xml version="1.0" encoding="UTF-8"?>
@@ -72,7 +69,7 @@ RCT_EXPORT_METHOD(sampleMethod:(NSString *)stringArgument numberParameter:(nonnu
       location = "group:${name}.xcodeproj">
    </FileRef>
 </Workspace>
-  `,
+`,
 }, {
   name: ({ name }) => `${platform}/${name}.xcodeproj/project.pbxproj`,
   content: ({ name }) => `// !$*UTF8*$!

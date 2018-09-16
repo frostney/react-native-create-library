@@ -10,5 +10,5 @@ module.exports = [].concat(
   general,
   android.map(updatePlatformInFile('android')),
   ios.map(updatePlatformInFile('ios')),
-  windows.map(updatePlatformInFile('windows'))
+  windows.map(updatePlatformInFile('windows')),
 );
