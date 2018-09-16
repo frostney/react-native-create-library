@@ -137,17 +137,22 @@ import com.facebook.react.bridge.Callback;
 
 public class ${name}Module extends ReactContextBaseJavaModule {
 
-  private final ReactApplicationContext reactContext;
+    private final ReactApplicationContext reactContext;
 
-  public ${name}Module(ReactApplicationContext reactContext) {
-    super(reactContext);
-    this.reactContext = reactContext;
-  }
+    public ${name}Module(ReactApplicationContext reactContext) {
+        super(reactContext);
+        this.reactContext = reactContext;
+    }
 
-  @Override
-  public String getName() {
-    return "${name}";
-  }
+    @Override
+    public String getName() {
+        return "${name}";
+    }
+
+    @ReactMethod
+    public void sampleMethod(String stringArgument, int numberArgument, Callback callback) {
+        // TODO: Implement
+    }
 }`,
 }, {
   name: ({ packageIdentifier, name }) =>
@@ -167,17 +172,17 @@ import com.facebook.react.bridge.JavaScriptModule;
 public class ${name}Package implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-      return Arrays.<NativeModule>asList(new ${name}Module(reactContext));
+        return Arrays.<NativeModule>asList(new ${name}Module(reactContext));
     }
 
     // Deprecated from RN 0.47
     public List<Class<? extends JavaScriptModule>> createJSModules() {
-      return Collections.emptyList();
+        return Collections.emptyList();
     }
 
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
-      return Collections.emptyList();
+        return Collections.emptyList();
     }
 }`,
 }, {
