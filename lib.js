@@ -58,14 +58,15 @@ module.exports = ({
       identifier, it is recommended to customize the package identifier.`);
   }
 
-  return createFolder(name)
+  const moduleName = rootFolderName = `${modulePrefix}-${paramCase(name)}`;
+  return createFolder(rootFolderName)
     .then(() => {
       if (!generateExample) {
         return Promise.resolve()
       }
       // Note: The example has to be created first because it will fail if there
       // is already a package.json in the folder in which the command is executed.
-      return execSync('react-native init example', { cwd: './' + name, stdio:'inherit'});
+      return execSync('react-native init example', { cwd: './' + rootFolderName, stdio:'inherit'});
     })
     .then(() => {
       return Promise.all(templates.filter((template) => {
@@ -80,7 +81,7 @@ module.exports = ({
         }
         const args = {
           name: `${prefix}${pascalCase(name)}`,
-          moduleName: `${modulePrefix}-${paramCase(name)}`,
+          moduleName,
           packageIdentifier,
           namespace: namespace || pascalCase(name).split(/(?=[A-Z])/).join('.'),
           platforms,
@@ -90,7 +91,7 @@ module.exports = ({
           license,
         };
 
-        const filename = path.join(name, template.name(args));
+        const filename = path.join(rootFolderName, template.name(args));
         var baseDir = filename.split(path.basename(filename))[0];
         
         return createFolder(baseDir).then(() =>
