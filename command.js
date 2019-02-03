@@ -73,19 +73,19 @@ ${emoji.get('arrow_right')}  To get started type \`cd ./${name}\` and run \`npm 
   }, {
     command: '--github-account [githubAccount]',
     description: 'The github account where the library is hosted (Default: `github_account`)',
-    default: 'github_account',    
+    default: 'github_account',
   }, {
     command: '--author-name [authorName]',
     description: 'The author\'s name (Default: `Your Name`)',
-    default: 'Your Name',    
+    default: 'Your Name',
   }, {
     command: '--author-email [authorEmail]',
     description: 'The author\'s email (Default: `yourname@email.com`)',
-    default: 'yourname@email.com',    
+    default: 'yourname@email.com',
   }, {
     command: '--license [license]',
     description: 'The license type (Default: `Apache-2.0`)',
-    default: 'Apache-2.0',    
+    default: 'Apache-2.0',
   }, {
     command: '--generate-example',
     description: 'Generates an example project for iOS and Android and links the library to it',
