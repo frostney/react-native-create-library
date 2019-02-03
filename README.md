@@ -76,7 +76,7 @@ createLibrary({
   namespace: String, /* (Windows only!) The namespace for the Windows module (Default: The package identifier as PascalCase, which is `Com.Reactlibrary`) */
   githubAccount: String, /* The github account where the library is hosted (Default: `github_account`) */
   authorName: String, /* The author's name (Default: `Your Name`) */
-  authorEmail: String, /* The author's email (Default: `yourname@email.com`) */ 
+  authorEmail: String, /* The author's email (Default: `yourname@email.com`) */
   license: String, /* The license type of this library (Default: `Apache-2.0`) */
   generateExample: Boolean, /* Will generate a RN example project and link the new library to it (Default: `false`) */
 }
