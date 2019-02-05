@@ -22,7 +22,9 @@ module.exports = [{
    *
    * It is expected this scripts lives in the libraries root folder within a
    * scripts folder. As first parameter the relative path to the libraries
-   * folder within the examples node_modules folder should be provided.
+   * folder within the example's node_modules folder may be provided.
+   * This script will determine the path from this project's package.json file
+   * if no such relative path is provided.
    * An example's package.json entry could look like:
    * "postinstall": "node ../scripts/examples_postinstall.js node_modules/react-native-library-name/"
    */
@@ -98,10 +100,14 @@ module.exports = [{
     // Read out dir of example project
     const exampleDir = process.cwd();
 
-    // Relative libraries path within the examples node_modules directory
-    const relativeLibraryNodeModulesPath = process.argv[2];
-    const libraryNodeModulesPath = path.resolve(exampleDir, relativeLibraryNodeModulesPath);
+    console.log(\`Starting postinstall cleanup for \${exampleDir}\`);
 
+    // Resolve the React Native library's path within the example's node_modules directory
+    const libraryNodeModulesPath = process.argv.length > 2
+      ? path.resolve(exampleDir, process.argv[2])
+      : path.resolve(exampleDir, 'node_modules', require('../package.json').name);
+
+    console.log(\`Removing unwanted artifacts for \${libraryNodeModulesPath}\`);
 
     removeLibraryNodeModulesPath(libraryNodeModulesPath);
 
