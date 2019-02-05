@@ -119,10 +119,9 @@ module.exports = ({
           return new Promise((resolve, reject) => {
             // Add postinstall script to example package.json
             const pathExampleApp = `./${rootFolderName}/example`;
-            const moduleName = `${modulePrefix}-${paramCase(name)}`;
             npmAddScriptSync(`${pathExampleApp}/package.json`, {
               key: 'postinstall',
-              value: `node ../scripts/examples_postinstall.js node_modules/${moduleName}`
+              value: `node ../scripts/examples_postinstall.js`
             });
 
             // Add and link the new library
