@@ -42,6 +42,10 @@ module.exports = ({
   license = DEFAULT_LICENSE,
   generateExample = DEFAULT_GENERATE_EXAMPLE,
 }) => {
+  if (typeof name !== 'string') {
+    throw new Error('Please write your library\'s name');
+  }
+
   if (!overridePrefix) {
     if (hasPrefix(name)) {
       throw new Error('Please don\'t include the prefix in the name');
