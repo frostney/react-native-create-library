@@ -9,6 +9,7 @@ const pkg = require('./package.json');
 updateNotifier({ pkg }).notify();
 
 program
+  .version(pkg.version)
   .usage(command.usage)
   .description(command.description)
   .action(function runAction() {
