@@ -48,7 +48,7 @@ ${emoji.get('arrow_right')}  To get started type \`cd ./${name}\` and run \`npm 
     });
   },
   options: [{
-    command: '--prefix [prefix]',
+    command: '-p, --prefix [prefix]',
     description: 'The prefix for the library (Default: `RN`)',
     default: 'RN',
   }, {
