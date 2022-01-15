@@ -51,7 +51,7 @@
     "eslint": "^3.16.0",
     "eslint-config-airbnb-base": "^11.1.0",
     "eslint-plugin-import": "^2.2.0",
-    "shelljs": "^0.7.6"
+    "shelljs": "^0.8.5"
   },
   "rnpm": {
     "plugin": "./command.js"
